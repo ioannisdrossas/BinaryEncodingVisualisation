@@ -25,21 +25,26 @@ def calculate_nrzl(user_input):
     for k in user_input:
         if k == '1':
             output.append(1)
+            output.append(1)
         else:
+            output.append(-1)
             output.append(-1)
     return output
 
 
 def calculate_nrzi(user_input):
     output = [1]
-    index = 1
+    index = 0
     for k in user_input:
         if k == '0':
-            output.append(output[index-1])
-            index += 1
+            output.append(output[index])
+            output.append(output[index])
+            index += 2
         else:
-            output.append(-output[index-1])
-            index += 1
+            output.append(-output[index])
+            output.append(-output[index])
+            index += 2
+    output.pop(0)
     return output
 
 
@@ -133,8 +138,44 @@ def visualise_nrz(output, input):
             x_axis.append(index)
             index += 1
             x_axis.append(index)
-
     plt.plot(x_axis,output)
     plt.ylim(-1, 2)
     plt.xlim(0, index)
     plt.show()
+
+
+def visualise_nrzl(output, input):
+    x_axis = [0, 1]
+    index = 1
+    for k in range(1, len(input)):
+        if input[k - 1] != input[k]:
+            x_axis.append(x_axis[len(x_axis) - 1])
+            index += 1
+            x_axis.append(index)
+        else:
+            x_axis.append(index)
+            index += 1
+            x_axis.append(index)
+    plt.plot(x_axis, output)
+    plt.ylim(-2, 2)
+    plt.xlim(0, index)
+    plt.show()
+
+
+def visualise_nrzi(output, input):
+    x_axis = [0, 1]
+    index = 1
+    for k in range(1, len(input)):
+        if input[k] == '1':
+            x_axis.append(x_axis[len(x_axis) - 1])
+            index += 1
+            x_axis.append(index)
+        else:
+            x_axis.append(index)
+            index += 1
+            x_axis.append(index)
+    plt.plot(x_axis, output)
+    plt.ylim(-2, 2)
+    plt.xlim(0, index)
+    plt.show()
+
