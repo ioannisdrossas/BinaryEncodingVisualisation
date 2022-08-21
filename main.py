@@ -126,19 +126,18 @@ def calculate_differential_manchester(user_input):
             index += 2
         else:
             if output[index] == 0:
+                output.append(0)
                 output.append(1)
                 output.append(1)
+                output.append(0)
+                output.append(0)
             else:
+                output.append(1)
                 output.append(0)
                 output.append(0)
-            index += 2
-            if output[index] == 0:
                 output.append(1)
                 output.append(1)
-            else:
-                output.append(0)
-                output.append(0)
-            index += 2
+            index += 5
     output.pop(0)
     return output
 
@@ -252,7 +251,31 @@ def visualise_manchester_encoding(output, input):
     plt.show()
 
 
-a = "0100110100"
+def visualise_differential_manchester(output, input):
+    x_axis = []
+    index = 0
+    for k in input:
+        if k == '1':
+            x_axis.append(index)
+            index += 1
+            x_axis.append(index)
+            x_axis.append(index)
+            index += 1
+            x_axis.append(index)
+        else:
+            x_axis.append(index)
+            x_axis.append(index)
+            index += 1
+            x_axis.append(index)
+            x_axis.append(index)
+            index += 1
+            x_axis.append(index)
+    plt.plot(x_axis, output, linewidth = 3)
+    plt.ylim(-0.5, 1.5)
+    plt.xticks(numpy.arange(0, 2 * len(input) + 0.05, step=1), rotation=90)
+    plt.show()
+
+a = "0101100"
 b = calculate_differential_manchester(a)
-print(b)
+visualise_differential_manchester(b,a)
 
