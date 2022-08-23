@@ -1,3 +1,4 @@
+from tkinter import *
 import matplotlib.pyplot as plt
 import numpy
 
@@ -246,7 +247,7 @@ def visualise_manchester_encoding(output, input):
         x_axis.append(index)
     plt.plot(x_axis, output)
     plt.ylim(-0.5, 1.5)
-    plt.xticks(numpy.arange(0, 2*len(input)+0.05, step=1), rotation=90)
+    plt.xticks(numpy.arange(0, 2 * len(input) + 0.05, step=1), rotation=90)
     plt.xlim(0, 2 * len(input) - 1)
     plt.show()
 
@@ -270,12 +271,19 @@ def visualise_differential_manchester(output, input):
             x_axis.append(index)
             index += 1
             x_axis.append(index)
-    plt.plot(x_axis, output, linewidth = 3)
+    plt.plot(x_axis, output, linewidth=3)
     plt.ylim(-0.5, 1.5)
     plt.xticks(numpy.arange(0, 2 * len(input) + 0.05, step=1), rotation=90)
     plt.show()
 
-a = "0101100"
-b = calculate_differential_manchester(a)
-visualise_differential_manchester(b,a)
 
+root = Tk()
+root['background']='white'
+
+label = Label(root,text="Insert binary data")
+label.pack()
+
+button = Button(root, text="Graph")
+button.pack()
+
+root.mainloop()
