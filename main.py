@@ -278,12 +278,21 @@ def visualise_differential_manchester(output, input):
 
 
 root = Tk()
-root['background']='white'
+root['background'] = 'white'
 
-label = Label(root,text="Insert binary data")
+window_width = int(root.winfo_reqwidth()) * 3.5
+window_height = int(root.winfo_reqheight()) * 3.5
+
+positionRight = int(root.winfo_screenwidth() / 2 - window_width / 2)
+positionDown = int(root.winfo_screenheight() / 2 - window_height / 2)
+
+root.geometry("{}{}+{}+{}".format(str(int(window_width))+'x', str(int(window_height)), str(positionRight), str(positionDown)))
+
+label = Label(root, text="Insert binary data")
 label.pack()
 
 button = Button(root, text="Graph")
 button.pack()
 
 root.mainloop()
+
