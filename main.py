@@ -277,8 +277,14 @@ def visualise_differential_manchester(output, input):
     plt.show()
 
 
+def graph_input():
+    inp = binary_sequence.get(1.0, "end-1c")
+    print(inp)
+
+
 root = Tk()
 root['background'] = 'white'
+root.title("Binary Encoding Visualisation")
 
 window_width = int(root.winfo_reqwidth()) * 3.5
 window_height = int(root.winfo_reqheight()) * 3.5
@@ -286,13 +292,16 @@ window_height = int(root.winfo_reqheight()) * 3.5
 positionRight = int(root.winfo_screenwidth() / 2 - window_width / 2)
 positionDown = int(root.winfo_screenheight() / 2 - window_height / 2)
 
-root.geometry("{}{}+{}+{}".format(str(int(window_width))+'x', str(int(window_height)), str(positionRight), str(positionDown)))
+root.geometry(
+    "{}{}+{}+{}".format(str(int(window_width)) + 'x', str(int(window_height)), str(positionRight), str(positionDown)))
 
 label = Label(root, text="Insert binary data")
 label.pack()
 
-button = Button(root, text="Graph")
+button = Button(root, text="Graph", command=graph_input)
 button.pack()
 
-root.mainloop()
+binary_sequence = Text(root,height=int(window_height/200),width=int(window_width//8))
+binary_sequence.pack()
 
+root.mainloop()
