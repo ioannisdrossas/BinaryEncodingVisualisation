@@ -237,7 +237,7 @@ def visualise_pseudoternary(output, input):
 
 def visualise_manchester_encoding(output, input):
     x_axis = [0, 1, 1, 2]
-    index = 1
+    index = 2
     for k in range(1, len(input)):
         x_axis.append(index)
         index += 1
@@ -248,7 +248,6 @@ def visualise_manchester_encoding(output, input):
     plt.plot(x_axis, output)
     plt.ylim(-0.5, 1.5)
     plt.xticks(numpy.arange(0, 2 * len(input) + 0.05, step=1), rotation=90)
-    plt.xlim(0, 2 * len(input) - 1)
     plt.show()
 
 
